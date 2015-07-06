@@ -338,7 +338,7 @@ if NEWBORN:
 elif RESETTED:
     print('Aether has just been resetted. Getting a new Node ID all settings are returned to defaults.')
 elif NUKED:
-    print('Aether has just ben nuked. I\'m keeping the settings and Node ID, but creating a new database.')
+    print('Aether has just been nuked. I\'m keeping the settings and Node ID, but creating a new database.')
     userProfile.set('machineDetails', 'onboardingComplete', False)
 
 # This is the context factory used to create TLS contexts.
