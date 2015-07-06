@@ -278,7 +278,7 @@ class UserProfile(object):
 
     def __getRandomOpenPort(self):
         # Binding to port 0 lets the OS give you an open port.
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
         s.bind(("",0))
         s.listen(1)
         port = s.getsockname()[1]
@@ -386,12 +386,25 @@ aetherContextFactoryInstance = AetherContextFactory()
 # Utility functions to provide basic functionality required in other parts of the application.
 
 def checkIPValidity(address):
-    # Checks if an IP address is valid.
+    if is_valid_ipv4_address(address) or is_valid_ipv6_address(address):
+        return True
+    return False
+
+# Check if address is a valid IPv4 Address
+def is_valid_ipv4_address(address):
     try:
         socket.inet_aton(address)
         return True
     except:
         return False
+
+# Check if address is a valid IPv6 Address
+def is_valid_ipv6_address(address):
+    try:
+        socket.inet_pton(socket.AF_INET6, address)
+        return True
+    except:
+      return False
 
 def logSystemDetails():
     # Print the system details.
